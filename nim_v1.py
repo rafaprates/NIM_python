@@ -1,11 +1,13 @@
 def msg(comp, n, retira):
-    print()
     if comp == True:
-        print("O computador tirou", retira ,"peça(s)")
+        print("O computador tirou", retira ,"peça(s).")
     else:
         print("Você tirou", retira, "peça(s).")
-    print("Agora resta(m)", n, "peça(s)")
-    print()
+    if n > 0:
+        print("Agora resta(m)", n, "peça(s).")
+        print()
+    else:
+        print("Fim do jogo! O computador ganhou!")
 
 def campeonato():
     compScores = 0
@@ -23,14 +25,14 @@ def campeonato():
     print("Placar: Você", compScores - totalScore, "X", compScores, "Computador")
 
 def computador_escolhe_jogada(n, m):
-    if m == minPieces: 
-        compRetira = minPieces
-    else:
-        compRetira = m
+#    if m == minPieces: 
+#        compRetira = minPieces
+#    else:
+    compRetira = m
+    pecasRestantes = n - compRetira
+    while pecasRestantes  % (m+1) != 0:
+        compRetira = compRetira - 1
         pecasRestantes = n - compRetira
-        while pecasRestantes  % (m+1) != 0:
-            compRetira = compRetira - 1
-            pecasRestantes = n - compRetira
     return compRetira #o n. de peças que o comp retira.
 
 def usuario_escolhe_jogada(n, m):
@@ -65,6 +67,7 @@ def partida():
     else:
         comp = True #informa quem começou. E passa parâmetro para msg().
         print("Computador começa!")
+        print()
         compRetira = computador_escolhe_jogada(n, m)
         n = n - compRetira #n. de peças restantes
         msg(comp, n, compRetira)
@@ -93,6 +96,7 @@ def main():
     print()
     if usrOption == 1:
         print("Você escolheu uma partida!")
+        print()
         partida()
     elif usrOption == 2:
         print("Você escolheu um campeonato!")
