@@ -8,17 +8,19 @@ def msg(comp, n, retira):
     print()
 
 def campeonato():
-    rodada = 1
-    while rodada <= 3:
+    compScores = 0
+    totalScore = 0
+    while totalScore < 3:
+        print("**** Rodada", totalScore + 1, "****")
         print()
-        print("**** Rodada", rodada, "****")
-        print()
-        rodada = rodada + 1
-        partida()
+        totalScore = totalScore + 1
+        compWins = partida() #if return True, comp wins 
+        if compWins == True:
+            compScores = compScores + 1
     print()
     print("**** Final do campeonato! ****")
     print()
-    #print("Placar: Você", usrScore, "X", compScore, "Computador")
+    print("Placar: Você", compScores - totalScore, "X", compScores, "Computador")
 
 def computador_escolhe_jogada(n, m):
     if m == minPieces: 
@@ -50,10 +52,10 @@ def partida():
         print("O limite de peças deve ser maior que um.")
         m = int(input("Limite de pelas por jogada?"))
     print()
-    rodada = 1
-    if rodada == 1: #inicia o placar.
-        compScore = 0
-        usrScore = 0
+    totalScore = 1
+    if totalScore == 1: #inicia o placar.
+        compScores = 0
+        usrScores = 0
 #***** PRIMEIRA JOGADA INICIA AQUI *****
     if n % (m+1) == 0:
         comp = False #informa quem começou. E passa parâmetro para msg().
@@ -78,16 +80,9 @@ def partida():
             compRetira = computador_escolhe_jogada(n, m)
             n = n - compRetira
             msg(comp, n, compRetira)
-    if comp == True: #se na última rodada comp = True. Comp jogou por último e venceu.
-        compScore = compScore + 1
-    else:
-        usrScore = usrScore + 1
-    if compScore > usrScore:
-        print("Fim do jogo! O computador ganhou!")
-    else:
-        print("Fim do jogo! Você ganhou") #nunca será chamada
+    if comp == True: #se na última totalScore comp = True. Comp jogou por último e venceu.
+        return comp
     print()
-
 
 def main():
     print()
@@ -101,6 +96,7 @@ def main():
         partida()
     elif usrOption == 2:
         print("Você escolheu um campeonato!")
+        print()
         campeonato()
     else:
         print("Opção inválida!")
