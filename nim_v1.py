@@ -1,3 +1,24 @@
+def msg(comp, n, retira):
+    print()
+    if comp == True:
+        print("O computador tirou", retira ,"peça(s)")
+    else:
+        print("Você tirou", retira, "peça(s).")
+    print("Agora resta(m)", n, "peça(s)")
+    print()
+
+def campeonato():
+    rodada = 1
+    while rodada <= 3:
+        print()
+        print("**** Rodada", rodada, "****")
+        print()
+        rodada = rodada + 1
+        partida()
+    print()
+    print("**** Final do campeonato! ****")
+    print()
+
 def computador_escolhe_jogada(n, m):
     if m == minPieces: 
         compRetira = minPieces
@@ -17,28 +38,6 @@ def usuario_escolhe_jogada(n, m):
         print()
         usrRetira = int(input("Quantas peças você vai tirar? "))
     return usrRetira #o n. de peças que o usuário retira.
-   
-def campeonato():
-    rodada = 1
-    while rodada <= 3:
-        print()
-        print("**** Rodada", rodada, "****")
-        print()
-        rodada = rodada + 1
-        partida()
-    print()
-    print("**** Final do campeonato! ****")
-    print()
-####
-
-def msg(comp, n, retira):
-    print()
-    if comp == True:
-        print("O computador tirou", retira ,"peça(s)")
-    else:
-        print("Você tirou", retira, "peça(s).")
-    print("Agora resta(m)", n, "peça(s)")
-    print()
 
 def partida():
     n = int(input("Quantas peças? "))
@@ -67,7 +66,7 @@ def partida():
         n = n - compRetira #n. de peças restantes
         msg(comp, n, compRetira)
 #***** A PRIMEIRA JOGADA TERMINA AQUI *****
-    while n > 0: 
+    while n > 0: #main loop
         if comp == True: #se comp começou, usuário joga a prox.
             comp = False #indica à msg() que tipo deve ser imprimido.
             usrRetira = usuario_escolhe_jogada(n, m)
@@ -86,11 +85,10 @@ def partida():
         print("Fim do jogo! O computador ganhou!")
     else:
         print("Fim do jogo! Você ganhou") #nunca será chamada
+    print("Placar: Você", usrScore, "X", compScore, "Computador")
 
 
 def main():
-    compScore = 0
-    usrScore = 0
     print()
     print("Bem-vindo ao jogo NIM! Escolha:")
     print()
