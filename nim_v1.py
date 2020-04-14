@@ -18,6 +18,7 @@ def campeonato():
     print()
     print("**** Final do campeonato! ****")
     print()
+    #print("Placar: Você", usrScore, "X", compScore, "Computador")
 
 def computador_escolhe_jogada(n, m):
     if m == minPieces: 
@@ -85,7 +86,7 @@ def partida():
         print("Fim do jogo! O computador ganhou!")
     else:
         print("Fim do jogo! Você ganhou") #nunca será chamada
-    print("Placar: Você", usrScore, "X", compScore, "Computador")
+    print()
 
 
 def main():
