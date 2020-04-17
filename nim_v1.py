@@ -13,6 +13,7 @@ def campeonato():
     compScores = 0
     totalScore = 0
     while totalScore < 3:
+        print()
         print("**** Rodada", totalScore + 1, "****")
         print()
         totalScore = totalScore + 1
@@ -25,9 +26,6 @@ def campeonato():
     print("Placar: Você", compScores - totalScore, "X", compScores, "Computador")
 
 def computador_escolhe_jogada(n, m):
-#    if m == minPieces: 
-#        compRetira = minPieces
-#    else:
     compRetira = m
     pecasRestantes = n - compRetira
     while pecasRestantes  % (m+1) != 0:
@@ -83,7 +81,7 @@ def partida():
             compRetira = computador_escolhe_jogada(n, m)
             n = n - compRetira
             msg(comp, n, compRetira)
-    if comp == True: #se na última totalScore comp = True. Comp jogou por último e venceu.
+    if comp == True: #se na última rodada comp = True. Comp jogou por último e venceu.
         return comp
     print()
 
@@ -100,10 +98,8 @@ def main():
         partida()
     elif usrOption == 2:
         print("Você escolheu um campeonato!")
-        print()
         campeonato()
     else:
         print("Opção inválida!")
 
-minPieces = 1
 main()
